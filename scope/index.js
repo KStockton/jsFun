@@ -599,11 +599,11 @@ const scope = {
     let myCrazyKidAntics = kid => {
       // Log A: kid //1 Pandora
       wildKids.push(kid);
-      // Log B: wildKids
+      // Log B: wildKids //2 ['Antigone', 'Pandora' ]
   
       let drawOnTheWall = () => {
         let myKid = 'Mandy';
-        // Log C: myKid
+        // Log C: myKid // 3 'Mandy'
         return `That wild kid ${myKid}, drew on the wall!`;
       };
 
@@ -611,24 +611,23 @@ const scope = {
 
       let myAmazingKid = () => {
         let myKid = wildKids.shift();
-        // Log D: myKid
+        // Log D: myKid // 4 'Antigone'
         return `That kid ${myKid}, is AMAZING!`;
       };
 
       myAmazingKid();
-      // Log E: myKid;
+      // Log E: myKid; // Pandora
       return `All these kids are wild, especially, ${myKid}!`;
     };
 
     myCrazyKidAntics(myKid);
 
     const result = [
-      { 'E': 'Pam' }, 
-      { 'A': 'Pam' },
-      { 'B': 'Pam' },
-      { 'C': 'Louisa' },
-      { 'D': 'Louisa' },
-      { 'F': 'Louisa' }
+      { 'A': 'Pandora' }, 
+      { 'B': ['Antigone', 'Pandora' ] },
+      { 'C': 'Mandy' },
+      { 'D': 'Antigone' },
+      { 'E': 'Pandora' }
     ];
     return result;
 
@@ -638,15 +637,15 @@ const scope = {
 
   exerciseR() {
     let myName = 'Rody';
-    // Log A: myName
+    // Log A: myName // 1 'Rody'
 
     const parentFunc = () => {
       myName += 'Toy';
-      // Log B: myName
+      // Log B: myName 2// RodyToy
 
       let innerFunc = () => {
         let myName = 'Tesla'; 
-        // Log C: myName
+        // Log C: myName // 3 'Tesla'
       };
 
       innerFunc();
@@ -654,9 +653,14 @@ const scope = {
     };
 
     parentFunc();
-    // Log D: myName
+    // Log D: myName // 4 'RodyToyDaniels'
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 'Rody' }, 
+      { 'B': 'RodyToy' },
+      { 'C': 'Tesla' },
+      { 'D': 'RodyToyDaniels' }
+    ];
     return result;
 
     // Annotation:
