@@ -24,21 +24,30 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.reduce((acc, kitty) => {
+      if(kitty.color === 'orange'){
+        acc.push(kitty.name);
+      }
+      return acc;
+    },[]);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I used reduce to itterate through the kitty array and created a condition of comparing
+    // the color of each kitty 
+    // next I pushed each kitty that met the condition of color 'orange' into an array
   },
 
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort(function (a, b){
+      return b.age - a.age;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I accessed the kitty array and used the sort array prototype method to sort the kitties by age from oldest to youngest.
   },
 
   growUp() {
@@ -55,13 +64,18 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map((cat) => {
+      cat.age += 2;
+      return cat;
+    });
     return result;
   }
 };
 
 
-
+// I used the map array prototype method to go through kitties.
+// I passed a key into may in the callback function. Accessed the 
+// age value with key and added 2 to the age of each array and returned the new array.
 
 
 
@@ -87,11 +101,22 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((acc, club) =>{
+      club.members.forEach(member =>{
+        if(!acc[member]){
+          acc[member] = [];
+        }
+        acc[member].push(club.club);
+      });
+      return acc;
+    },{});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Accessed the keys with reduce and forEach then passed
+    // The element into the acc[] key declaration and created keys
+    // then set the keys to an empty array. Then I pushed a value from club: into the array before
+    // returing the acc.
   }
 };
 
@@ -123,7 +148,10 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map(mod =>{
+      return { mod: mod.mod, studentsPerInstructor: mod.students/mod.instructors
+      };
+    });
     return result;
 
     // Annotation:
@@ -158,7 +186,9 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map((cake) => {
+      return { flavor: cake.cakeFlavor, inStock: cake.inStock };
+    });
     return result;
 
     // Annotation:
@@ -186,22 +216,28 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter((cake) => {
+      return cake.inStock >0;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I filtered out all the cakes that our completly out of stock. Filter returned the array.
   },
   
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake) => {
+      acc += cake.inStock;
+      return acc;
+    },0);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I used reduce to break down the values to a single number. I accesed the array
+    // then i added the values of cakes.instock to the acc and continued to return the acc.
   },
 
   allToppings() {
@@ -209,11 +245,20 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake) =>{
+      cake.toppings.forEach(topping =>{
+        if(!acc.includes(topping)){
+          acc.push(topping);
+        }
+      });
+      return acc;
+    },[]);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Set up an empty array using reduce. I then accessed the toppings array.
+    // I then setup a condition to check the acc. If the acc didn't include the topping. I pushed
+    // the topping into the acc and returned the result.
   },
 
   groceryList() {
@@ -227,11 +272,21 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake)=>{
+      cake.toppings.forEach((topping) =>{
+        if(!acc[topping]){
+          acc[topping] = 0;
+        }
+        acc[topping]++;
+      });
+      return acc;
+    },{});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I used reduce to create an object. Used forEach to access the nested array in the object.
+    // i created a condition that would check if the acc had a dynamic key. If not create a key and set the value to a number 0
+    // next i accesed the key and added a value each time the key was itterated through.
   }
 };
 
@@ -262,7 +317,9 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter((classroom) => {
+      return classroom.program === 'FE';
+    });
     return result;
 
     // Annotation:
@@ -277,21 +334,36 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((acc, room) => {
+      if(room.program === 'FE'){
+        acc.feCapacity += room.capacity;
+      } else {
+        acc.beCapacity += room.capacity;
+      }
+      return acc;
+    },{feCapacity: 0, beCapacity: 0});
+    
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Went through the classrooms array and used reduced to create an Object with a key of 'feCapacity' and 
+    // and 'beCapacity'. I realize that it was important for me to define the key in the returned object as the second argument.
+    // this allows me to add room.capcity to a defined key with a starting value of 0. else return the other condition for 'BE'.
+    // annother way to approach is problem is to first see if (acc['feCapacity'] = undefined) { acc['feCapacity'] = 0}; then we can
+    // add the condition of adding acc['feCapacity'] += room.capacity 
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a,b) => {
+      return a.capacity - b.capacity;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I accesed the classroom array and used the sort method to sort the classrooms from smallest to largetst and re
+    // returned the array.
   }
 };
 
@@ -317,11 +389,14 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((acc, brew)=>{
+      acc += brew.beers.length;
+      return acc;
+    },0);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I used reduce to break down the array to a single value. Once I accessed the beers key. Because it's an array i added the length to the acc
   },
 
   getBreweryBeerCount() {
@@ -333,11 +408,15 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.map((brew) => {
+      return {name: brew.name, beerCount: brew.beers.length};
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Had to define an object literal in the returned array. This allowed me to uniquely name the keyes name: and beerCount:
+    // Also used map because it would return an array of the each length which is appropraiate give the problem. Also I passed in the values
+    // that notation to return the proper values for each key ie. brew name, brew.beers.length
   },
 
   findHighestAbvBeer() {
@@ -345,11 +424,19 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((acc, brew) =>{
+      brew.beers.forEach((beer)=>{
+        if(beer.abv > acc['abv']){
+          acc = beer;
+        }
+      });
+      return acc;
+    },{name: '', type: '', abv: 0, ibu: 0 });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    //I started with an empty object. This allows me to compare the object to the call back values.
+    // I used reduce because I wanted to return a single value and each value could be replaced in the acc if the condition was met resulting in the largest value.
   }
 };
 
@@ -393,11 +480,23 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor) =>{
+      cohorts.forEach((cohort) =>{
+        if(instructor.module === cohort.module){
+          acc.push({name:instructor.name, studentCount: cohort.studentCount});
+        }
+      });
+      return acc;
+    },[]);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // // Access instructor array
+    // Access cohorts array
+    // create a condition
+    // instructor in mod1
+    // cohort is mod1
+    // return key value pair t
   },
 
   studentsPerInstructor() {
@@ -407,7 +506,15 @@ const turingPrompts = {
     // cohort1804: 10.5
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cohorts.reduce((acc, cohort)=>{
+      let mutipleTeachers = instructors.filter((instructor)=>{
+        if(instructor.module === cohort.module){
+          return instructor.name;
+        }
+      });
+      acc[`cohort${cohort.cohort}`] = cohort.studentCount / mutipleTeachers.length;
+      return acc;
+    },{});
     return result;
 
     // Annotation:
@@ -429,7 +536,17 @@ const turingPrompts = {
     //     Will: [1, 2, 3, 4]
     //   }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor) => {
+      let instructorMods = cohorts.reduce((acc, cohort) =>{
+        cohort.curriculum.forEach((subject) =>{
+          if(instructor.teaches.includes(subject) && !acc.includes(cohort.module))
+            acc.push(cohort.module);
+        });
+        return acc;
+      },[]);
+      acc[instructor.name] = instructorMods;
+      return acc;
+    },{});
     return result;
 
     // Annotation:

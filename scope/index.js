@@ -11,12 +11,12 @@ const scope = {
       }
 
       function beautifyPerson() {
-        // Log A: personB
+        // Log A: personB // 1 'BEN'
         
         if (personB.includes('B')) {
           personB = person;
           personC = personB;
-          // Log B: personC
+          // Log B: personC // 2 Cardi B
         }
       }
 
@@ -29,7 +29,12 @@ const scope = {
 
     // Log D: personC
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 'Ben' },
+      { 'B': 'CardiB'},
+      { 'C': 'CardiB' },
+      { 'D': 'Paul' }
+    ];
     return result;
 
     // Annotation:
