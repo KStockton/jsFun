@@ -563,7 +563,20 @@ const turingPrompts = {
     //   recursion: [ 'Pam', 'Leta' ]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((acc, instructor)=>{
+      instructor.teaches.forEach((subject) => {
+        if(!acc[subject]){
+          acc[subject] = [];
+        }
+        cohorts.forEach((cohort) => {
+          if(cohort.curriculum.includes(subject) && !acc[subject].includes(instructor.name)){
+            acc[subject].push(instructor.name);
+          }
+        });
+      });
+    
+      return acc;
+    },{});
     return result;
 
     // Annotation:
@@ -605,7 +618,7 @@ const bossPrompts = {
 
     const result = Object.keys(bosses).reduce((acc, boss) => {
       if(!acc.includes(boss)){
-        acc.push({bossName: bosses[boss].name, sideKickLoyalty: sidekicks.reduce((acc, sidekick) => {
+        acc.push({bossName: bosses[boss].name, sidekickLoyalty: sidekicks.reduce((acc, sidekick) => {
           if(sidekick.boss === bosses[boss].name){
             acc += sidekick.loyaltyToBoss;
           }
@@ -656,7 +669,15 @@ const astronomyPrompts = {
     //     color: 'red' }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.keys(constellations).reduce((acc, sparkles) =>{
+      stars.forEach((starArray)=>{
+        if(constellations[sparkles].stars.includes(starArray.name)){
+          acc.push(starArray);
+        }
+      });
+      return acc;
+    },[])
+    ;
     return result;
 
     // Annotation:
