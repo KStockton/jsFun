@@ -571,6 +571,11 @@ const turingPrompts = {
   }
 };
 
+// First we want to use the reduce() method on instructors array because we know we are trying
+// to return an object, pass in acc and iterate over each instructor
+// Next, we want iterate over the cohorts array with forEach(topic)
+// Next, we want to create a condition: if(topic.curriculum.includes(instructor.teaches))
+//     make topic key => acc[topic] = [ instructors]
 
 
 
@@ -598,7 +603,18 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.keys(bosses).reduce((acc, boss) => {
+      if(!acc.includes(boss)){
+        acc.push({bossName: bosses[boss].name, sideKickLoyalty: sidekicks.reduce((acc, sidekick) => {
+          if(sidekick.boss === bosses[boss].name){
+            acc += sidekick.loyaltyToBoss;
+          }
+          return acc;
+        },0)});
+      }
+      return acc;
+    },[])
+    ;
     return result;
 
     // Annotation:
@@ -678,7 +694,6 @@ const astronomyPrompts = {
     //    "The Plow", 
     //    "Orion", 
     //    "The Little Dipper" ]
-
 
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
