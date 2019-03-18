@@ -38,7 +38,16 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare three global variables
+    // Next, we declare a function called changePerson and the text are saved in global memory.
+    // Next, the changePerson funciton is declared which runs because the global variables are defined
+    // next the beautiful person function is added to the call stacked and is invoked.
+    // Log personA will refer to the global variable Ben
+    // Log B will look for the variable person which was not defined within the beutiful function so it will
+    // look back using the call stack and see that the changePerson method has defined person as cardiB.
+    // Log C of personC has reassigned personB defined from Tom to the person which is CardiB making personC cardiB.
+    // Log D log of personC is global scoped so it will log `paul`
+
   },
 
   exerciseB() {
@@ -80,7 +89,12 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A is functional scoped so it will log the number 75.
+    // Log B is blocked scoped so it will look for number to be defined within the method 
+    // first which number is 64.
+    // Log C happens after the `newNumber` function is declared. So it will look within the function for 
+    // whether number is defined which is 64. 
+    // Log D number is global scoped so it will only have access to the global variable 30
   },
 
   exerciseC() {
@@ -119,7 +133,12 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A is function scoped within greetingFunction and will refer to the gretting = 'yo'.
+    // Log B is function scoped within newPhrase will refer greeting with newPhrase
+    // `hey`
+    // Log C is function scoped within ngrettingFunctions and upon the invocation of newPhrase greeting
+    // has been reassigned from Yo to Hey
+    // Log D is global scoped and can only access the global variable 'Hello'
   },
 
   exerciseD() {
@@ -158,7 +177,13 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A is function scopped and can only access the greeting variable 'hi'.
+    // Log B is function scoped within gretting and will look for the variable greeting
+    // it wont find it so it will see it within the greetingGenerator function and reassing it from
+    // hi to welcome.
+    // Log C is function scoped within greeting gnerator and will also see the funciton
+    // newGreeting has reassigned `hi` upon invocation.
+    // Log D will is global scoped and has access only to the global variable greeting of 'howdy'.
   },
 
   exerciseE() {
@@ -195,7 +220,16 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // The console.log order is C,A,B,D
+    // console.log C is before sayName is invoke during execution phase and only has
+    // access to the global variable name on line 1.
+    // Console log A is next and is blocked scopped. It onlyu has acces to the variable 'pam but has been 
+    // reassigned in the line 3 condition in which the console.log lies making log A nathaniel'.
+    // Console log B is Nathaniel because after the function has been invoked the first condition is met
+    // and Pam has been reassigned to Nathaniel.
+    // Console log D is global scoped and because nothing was returned within the sayName function or reassigned
+    // Console log D is Brittany 
+comment
   },
 
   exerciseF() {
@@ -236,7 +270,14 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // console log A happens first after invocation of petDog() and is apart of first line of execution
+    // phase. Log A will not see dog defined and will look for a global variable which is 'spot'.
+    // Log B has no access to the first conditional of petDog() and a global functional dog variable wasn't defined
+    //  so it will look for a global variable which is 'Spot' at line 1.
+    // Log C reassigns the global variable from spot to biscuit.
+    // Log D in execution phase reassigns the global variable(dog) from 'spot' to Biscuit.
+    // Log E is invoked and will create a new variabel called let dog = Fluffy but will not be accessable or of use for this console.log
+    // then after rollOver is invoked 'spot' is reassigned to Biscuit
   },
 
   exerciseG() {
@@ -271,7 +312,13 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A is a reference Error because during execution phase when fruit is passed in
+    // the variable hasn't been created before the console.log
+    // Log B is mango and is block scoped within the condition. During execution phase 'mango' is created
+    // fruit variable.
+    // Log C will console log 'mango' because var is hoisted to a global function scope.
+    // Log D will log apple because it eat fruit doesn't reassign or return a global variable, resulting in Log D
+    // grabing the global scope variable `apple`
   },
 
   exerciseH() {
@@ -317,7 +364,15 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A will return the function scoped variable that was labeled during creation phase of invocation at the bottom.
+    // After the first condion is met during execution and fn2 is envoked. The interpreter will try to pass the num 9 into
+    // fn2 but will see that fn2 has not been declared. It then will look outside the block scope and see that it was declared
+    // at const fn2. It will pass in num 9 where Log D console logs 9
+    // in fn2 num(9) will add 1  and Log E will console log 10 under the expression.
+    // The interpreter will go back and execute under fn2(num) and will look for num to be defined within the block scope.
+    // where it defined as 9 and will assign it to newNum.
+    // Log B interperter will look block scope and access const var = 9 and log 9
+    // Log C will refer to num at fn1 function scope and will log 4
   },
 
   exerciseI() {
@@ -357,7 +412,19 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A when invoked during execution phase will run eatSnack and in creation phase will see a variable hunger
+    // will not see where its located but have a value and reassing the value to 75 from the global scope value at line 2.
+    // Log B will log 0 because when the function is involked during eatSnack execution phase hunger is gorgeYourself() functional scoped
+    // Log C will then be executed afer gorgeYorself() is invoked and will see a declaration hunger with a value of 25 and will
+    // look global scoped and will reassign  var hunger to 75.
+    // Next, Log D line of code will run under eatSnack().
+    // hunger declaration with its value will refer to line 1 and will add 5 to the reassigned from eatSnack funtion 75 to now 80.
+    // Next, eat Snack is invoked which will see hunger declaration and will look for a global variable and see 85. Which
+    // will subtract 25 and Log A will again log 55.
+    // Next the gorgeYourself() will be invoked and log B will log 0.
+    // Next log C will see a declaration of hunger with a value of 80 and will subtract 25 and log 55. Its imporatant to note
+    // the funciton will not resign the global variable. Only console log from what was last reassigned with the previous executed code.
+    // Next Log E will show a value of the reassigned hunger value of 55 after the eatSnack() reassigned the value from 80 - 25 = 55
   },
 
   exerciseJ() {
@@ -405,7 +472,15 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A will access the global variable 'ketchup sandwich'
+    // Next, Log D is executed after log A and will invoke the function add cheese.
+    // Log D will see a function scoped variable of cheeseTopping and console.log gouda
+    // Next, addChipotle function is invoked within execution phase and 
+    // Log B will look for a variable of toppings function scoped and global scoped and will log undefined.
+    // Next, the conditional statment will execute  and global sandwich will be reassigned to `not a mediocre sandwich`
+    // Next, Log C will not a declaration or variable of sandwich and will look outside of function scope addChipotle to global
+    // and will see a reassigned variable with `not a mediocre sandwich`.
+    // Log F will return the variable 'National Treasure' because it was saved in global memory after invocation
   },
 
   exerciseK() {
@@ -429,7 +504,10 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // In execution phase when foo() is invoked creation phase happens but nothing goes on.
+    // Next, execution phase happens and the conditional occurs where num variable has been reassigned to 7.
+    // Log A will not see a num variable and will look global scoped and see a variable of 7 which was reassigned from the coditional.
+    // Next, Log B will also see a reassigned variable of 7 from the foo function
   },
 
   exerciseL() {
@@ -465,7 +543,12 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Line 1 is reasigned to 90 but first lose points is invoked during global execution.
+    // Next addPoints is invoked which during creation grade is labeled then execution happens to the conditional
+    // Next, Log A will look for the variable which is function scoped below addPoints function. 
+    // Next line of code will console.log 
+    // Log B which wil have a reassigned value of 90.
+    // Next Log C will also have a reassigned value of 90 form losePoints function.
   },
 
   exerciseM() {
@@ -496,7 +579,10 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A will refer to the global variable and log 5
+    // Log B will refer to reassign global variable of 6
+    // Log C will give a reference error because the function contains num but is being console before its created.
+    // Log D will refer to the reassigned global varible of 6 that was changed during execution form the first() line of code.
   },
 
   exerciseN() {
@@ -542,7 +628,10 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log E,A,B will see the global variable. The conditions of changeInstructor() never occur.
+    // Log C will see a declared and reassigned value for instructor and will find the variable in the global scope and will log the variable that was reassigned from execution
+    // Log D will now see the reassigned variable of Louisa.
+    // Log F will now execute and will allso see the reassigned varible of Louisa.
   },
 
   exerciseO() {
@@ -565,7 +654,9 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log B will log 'flipflop' from the global variable b/c its globally scoped.
+    // Log A will execute when putOnShoes is invoked and will be functionally scopped and undefined.
+    // Log C will be globally scoped and still see the value 'flipflop'
   },
 
   exerciseP() {
@@ -594,7 +685,11 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A, will no log because its an incomplete condition or the condition wasnt met so it will
+    // move to the next if condition.
+    // Log B will have first check functional scope then see a reassigned value of 'soup'. This reassigned value
+    // occured when the orderLunch function was invoked during execution phase.
+    // Log C will see the reassigned global variable of `soup` because its global scoped.
   },
 
   exerciseQ(){
@@ -637,7 +732,19 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // During execution phase this function myCrazyKidAntics() is invoked.
+    // Log A will first refer to the function scope of a non existent kid  which is a call back function and was passed in 
+    // from the function myCrazyKidAntics which is a variable in the global scope and is 'Pandora'.
+    // Next, the wildkids array is accessed golobally and a new kid is pushed into the array upon invocation in the execution phase of the function 
+    // myCrazyKidAntics.
+    // Log B will be an array ['Antigone', 'Pandora'] showing he was pushed in in the previous line of code.
+    // Next, drawOnTheWall() is invoked and a new variable is created and labeled. 
+    // Log C is functional scoped and will log a 'Mandy'.
+    // Next, The function myAmazingKid() is invoked and will go to the line of code where it was a label it will run. 
+    // Next, Log D will look for the variable myKid which is function scoped insode of the value of the function myAmazingKid() and will
+    // have a value that was shifted out (using a array prototype method) of the array from the global scoped array, which was mutated and will return 'Antigone'
+    // Log D is 'Antigone'
+    // LogE will then be executed and will return Pandora as a globally scopped variable 
   },
 
   exerciseR() {
@@ -669,7 +776,13 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Log A will return 'Rody' from the global scope variable.
+    // Log B will see the variable declaration (function scoped) of myName and will look for the variable globaly and will append the value of 'RodyToy' when the function parentFunc() was invoked
+    // Next innerFunc() is invoked and
+    // Log C will be 'Tesla'.
+    // The next line of will execute and will be function scoped and will see andother reference of myName then it will check globaly for the variable and will append Daniels to 
+    // an already reassigned value of 'RodyToy'
+    // Log D will be 'RodyToyDaniels'
   }
 };
 

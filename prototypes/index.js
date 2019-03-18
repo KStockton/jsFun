@@ -426,7 +426,7 @@ const breweryPrompts = {
 
     const result = breweries.reduce((acc, brew) =>{
       brew.beers.forEach((beer)=>{
-        if(beer.abv > acc['abv']){
+        if(beer.abv > acc.abv){
           acc = beer;
         }
       });
@@ -695,7 +695,17 @@ const astronomyPrompts = {
     //   red: [{obj}]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stars.reduce((acc, star) =>{ 
+      stars.forEach((starObject) =>{
+        if(!acc[star.color]){
+          acc[star.color] = [];
+        }
+        if(starObject.color === star.color && !acc[star.color].includes(starObject)){
+          acc[star.color].push(starObject);
+        }
+      });
+      return acc;
+    },{});
     return result;
 
     // Annotation:
