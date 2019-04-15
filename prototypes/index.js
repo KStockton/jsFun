@@ -232,13 +232,13 @@ const cakePrompts = {
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
-// refactored and it works using forEach
+    // refactored and it works using forEach
   //   let counter = 0
   //   cakes.forEach(cake =>{
   //     counter += cake.inStock
   //   })
   
-  // return result
+    // return result
 
 
     const result = cakes.reduce((acc, cake) => {
@@ -379,22 +379,6 @@ const classPrompts = {
   }
 };
 
-
-
-
-
-
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-
-
-
-
-
-
 // DATASET: breweries from ./datasets/breweries
 const breweryPrompts = {
   getBeerCount() {
@@ -406,6 +390,14 @@ const breweryPrompts = {
       return acc;
     },0);
     return result;
+
+    // used different method below on practice
+    //   let counter = 0 
+    //   beerbrews.forEach(brew =>{
+    //     counter += brew.beers.length
+    //   })
+
+    // return counter
 
     // Annotation:
     // I used reduce to break down the array to a single value. Once I accessed the beers key. Because it's an array i added the length to the acc
@@ -424,6 +416,15 @@ const breweryPrompts = {
       return {name: brew.name, beerCount: brew.beers.length};
     });
     return result;
+
+    // Put in function like assement and practiced
+    // function beerStatus(beerbrews){
+    //   let result = beerbrews.map(brew =>{
+    //       return { name: brew.name, beerCount: brew.beers.length }
+    //    })
+    //    return result
+    // }
+    // beerStatus(breweries)
 
     // Annotation:
     // Had to define an object literal in the returned array. This allowed me to uniquely name the keyes name: and beerCount:
