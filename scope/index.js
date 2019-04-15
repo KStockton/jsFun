@@ -229,7 +229,6 @@ const scope = {
     // and Pam has been reassigned to Nathaniel.
     // Console log D is global scoped and because nothing was returned within the sayName function or reassigned
     // Console log D is Brittany 
-comment
   },
 
   exerciseF() {

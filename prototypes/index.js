@@ -155,7 +155,9 @@ const modPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we can use map because we are returning the same length. 
+    // We know the keys so we can hardcode them into the return and simply
+    // place the values into each key during the iteration.
   }
 };
 
@@ -192,7 +194,9 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we can use map because we are returning the same length. 
+    // We know the keys so we can hardcode them into the return and simply
+    // place the values into each key during the iteration.
   },
 
   onlyInStock() {
@@ -217,7 +221,7 @@ const cakePrompts = {
     // ]
 
     const result = cakes.filter((cake) => {
-      return cake.inStock >0;
+      return cake.inStock > 0;
     });
     return result;
 
@@ -228,6 +232,14 @@ const cakePrompts = {
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
+// refactored and it works using forEach
+  //   let counter = 0
+  //   cakes.forEach(cake =>{
+  //     counter += cake.inStock
+  //   })
+  
+  // return result
+
 
     const result = cakes.reduce((acc, cake) => {
       acc += cake.inStock;
@@ -285,7 +297,7 @@ const cakePrompts = {
 
     // Annotation:
     // I used reduce to create an object. Used forEach to access the nested array in the object.
-    // i created a condition that would check if the acc had a dynamic key. If not create a key and set the value to a number 0
+    // i created a condition that would check if the acc had a dynamic key. If not then it will create a key and set the value to a number 0
     // next i accesed the key and added a value each time the key was itterated through.
   }
 };
@@ -323,7 +335,7 @@ const classPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // By using a filter we can create a condition that will check for classroom that are FE and return the filter.
   },
 
   totalCapacities() {
@@ -726,7 +738,17 @@ const astronomyPrompts = {
     //    "Orion", 
     //    "The Little Dipper" ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let sortedConstellations = stars.sort((a,b)=>{
+      return a.visualMagnitude - b.visualMagnitude;
+    });    
+    let answer = sortedConstellations.reduce((acc, sparkleConstelation) =>{
+      if(!sparkleConstelation.constellation == ''){
+        acc.push(sparkleConstelation.constellation);
+      }
+      return acc;
+    },[]);
+
+    const result = answer;
     return result;
 
     // Annotation:
@@ -757,7 +779,14 @@ const ultimaPrompts = {
     // Return the sum of the amount of damage for all the weapons that our characters can use
     // Answer => 113
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.keys(weapons).reduce((acc, weapon) =>{
+      characters.forEach(character =>{
+        if(character.weapons.includes(weapon)){
+          acc += weapons[weapon].damage;
+        }
+      }); 
+      return acc;
+    },0);
     return result;
 
     // Annotation:
@@ -769,11 +798,30 @@ const ultimaPrompts = {
     // Return the sum damage and total range for each character as an object. 
     // ex: [ { Avatar: { damage: 27, range: 24 }, { Iolo: {...}, ...}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = characters.reduce((acc, character) =>{
+      let finalCharacter = {};
+      finalCharacter[character.name] =  { 
+        damage:  0 ,range: 0};
+      Object.keys(weapons).forEach(weaponObj =>{
+    
+        if(character.weapons.includes(weaponObj)){
+          finalCharacter[character.name].damage += weapons[weaponObj].damage;
+          finalCharacter[character.name].range += weapons[weaponObj].range;
+        }
+      });
+      acc.push(finalCharacter);
+      return acc;
+    },[]);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // first we have to get access to the characters dataset and we know we are returning an array so we can use 
+    // map or reduce because we are returing the same length of characters. 
+    // Then we need to create an object literal and dynamicaly make the key with a hardcode value of damage and range
+    // Next we need to access the weapons object and create keys using Object.keys. 
+    // This allows us to itterate through the object and compare the keys to the characters weapons.
+    // Then we create a condition that checks if the weapons key array is included in the characters weapon array. Then
+    // if that condition is met we dynamically add the values to the damage or range properties.
   },
 };
 
