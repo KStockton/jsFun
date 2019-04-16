@@ -502,6 +502,17 @@ const turingPrompts = {
       return acc;
     },[]);
     return result;
+    // used map this time to create answer
+    // instructors.map(instructor =>{
+    //   let result = {}
+    //   cohorts.forEach(cohort =>{
+    //     if(instructor.module === cohort.module){
+    //       result.name = instructor.name
+    //       result.studentCount = cohort.studentCount
+    //     }
+    //   })
+    //   return result
+    // })
 
     // Annotation:
     // // Access instructor array
